@@ -28,15 +28,18 @@ from pathlib import Path
 # overall setting
 # change path when needed  
 
-DATA_FILE = Path(
-    r"C:\Users\zdong262\OneDrive - The University of Western Ontario"
-    r"\Desktop\WQ\EMC\revision\lumped_model_data.csv"
+BASE_DIR = Path(__file__).resolve().parent
+
+DATA_FILE = (
+    BASE_DIR
+    / "lumped_model_data.csv"
 )
 
-BACKEND_FILE = Path(
-    r"C:\Users\zdong262\OneDrive - The University of Western Ontario"
-    r"\Desktop\WQ\EMC\revision\lumped_model_chain.h5"
+BACKEND_FILE = (
+    BASE_DIR
+    / "lumped_model_chain.h5"
 )
+
 
 N_WALKERS = 16
 N_STEPS = 20000
