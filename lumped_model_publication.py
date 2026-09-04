@@ -486,7 +486,93 @@ posterior_samples = sampler.get_chain(
     flat=True
 )
 
+# ----------------------------------------------------
+# convergence check
+tau = sampler.get_autocorr_time(tol=0)
+
 print(
-    "Posterior sample shape:",
-    posterior_samples.shape
+    "Autocorrelation time:",
+    tau
 )
+
+print(
+    "N / tau:",
+    N_STEPS / tau
+)
+
+# ----------------------------------------------------
+# seasonal composite parameter for evaluation  
+
+global_samples = posterior_samples[:, 0]
+summer_samples = posterior_samples[:, 1]
+fall_samples = posterior_samples[:, 2]
+
+summer_log_emc = (
+    global_samples
+    + summer_samples
+)
+
+fall_log_emc = (
+    global_samples
+    + fall_samples
+)
+
+lower_summer = np.percentile(summer_log_emc, 2.5)
+mean_summer = np.mean(summer_log_emc)
+upper_summer = np.percentile(summer_log_emc, 97.5)
+
+lower_fall = np.percentile(fall_log_emc, 2.5)
+meann_fall = np.mean(fall_log_emc)
+upper_fall = np.percentile(fall_log_emc, 97.5)
+
+# ----------------------------------------------------
+# coeccfients for evaluation  
+summary_names = [
+    "beta_total_rainfall",
+    "beta_event_duration",
+    "beta_peak_rainfall",
+    "beta_ADD",
+    "sigma_res",
+]
+
+summary_indices = [
+    3,
+    4,
+    5,
+    6,
+    7,
+]
+
+summary = []
+
+for i, name in zip(
+    summary_indices,
+    summary_names,
+):
+
+    samples = posterior_samples[:, i]
+
+    lower = np.percentile(samples, 2.5)
+    mean = np.mean(samples)
+    upper = np.percentile(samples, 97.5)
+
+    summary.append(
+        [
+            name,
+            mean,
+            lower,
+            upper,
+        ]
+    )
+
+summary = pd.DataFrame(
+    summary,
+    columns=[
+        "Parameter",
+        "Mean",
+        "2.5%",
+        "97.5%",
+    ],
+)
+
+print(summary)
