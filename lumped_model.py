@@ -2,7 +2,7 @@
 
 """
 Bayesian single lumped EMC model.
-Thye single catchment-scale EMC is modeled.
+A single catchment-scale EMC is modeled.
 
 Input file:
     lumped_model_data.csv
