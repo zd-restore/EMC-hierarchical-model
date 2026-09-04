@@ -27,7 +27,7 @@ from pathlib import Path
 # ----------------------------------------------------
 # overall setting
 
-# change path when needed  
+# change path if needed  
 BASE_DIR = Path(__file__).resolve().parent
 
 DATA_FILE = (
