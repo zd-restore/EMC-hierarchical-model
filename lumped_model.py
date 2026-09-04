@@ -40,7 +40,7 @@ BACKEND_FILE = (
     / "lumped_model_chain.h5"
 )
 
-
+# for emcee
 N_WALKERS = 16
 N_STEPS = 20000
 RANDOM_SEED = 11
