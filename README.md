@@ -1,5 +1,5 @@
 ### Data and codes used for the sutdy:
-#### A Bayesian Approach for Modeling Temporal Variability in Urban Stormwater Event Mean Concentrations. 
+#### A Bayesian Approach for Modeling Temporal Variability in Urban Stormwater Event Mean Concentrations (https://doi.org/10.1016/j.jhydrol.2026.136862). 
 ##### *The global and seasonal components are retained separately for consistency with the EMC structural formulation. However, interpretation is based on the combined seasonal composite, that is, levels global+seasonal rather than on the components separately.
 
 ##### *Detailed EMC structural formulation can be found in the manuscript. 
